@@ -1,9 +1,9 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import foodimg from "../src/assets/foodImg.jpg";
-// import Layouts from "../src/layouts";
-import Layouts from "../src/layouts";
+// import React from "react";
+import { useState } from "react";
+import foodimg from "../assets/foodImg.jpg";
+import Layouts from "../layouts";
 import { Link } from "react-router-dom";
+// import "./index.css";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -27,7 +27,7 @@ const Home = () => {
           console.log(data);
         })
         .catch((error) => {
-          console.error("Error", error);
+          console.log("Error", error);
         });
     };
     searchRecipes(inputs);
@@ -77,7 +77,7 @@ const Home = () => {
           <div className="m-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
             {recipes.map((recipe, index) => {
               return (
-                <Link to="/recipes">
+                <Link to={`/recipes/${recipe.id}`}>
                   <div
                     key={index}
                     className="rounded-md shadow-md  border border-[#ebebeb]"
