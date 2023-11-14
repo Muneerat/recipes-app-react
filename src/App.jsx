@@ -4,6 +4,8 @@ import Home from "./pages/home";
 import ShowRecipes from "./pages/showRecipes";
 import "./App.css";
 import Test from "./pages/test";
+import BrowseRecipe from "./pages/browseRecipe";
+import Contact from "./pages/contact";
 
 // https://api.spoonacular.com/recipes/716429/information?apiKey=YOUR-API-KEY&includeNutrition=true.
 const App = () => {
@@ -30,28 +32,28 @@ const App = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/recipes/recipesid" className="px-10">
+                <Link to="/recipes" className="px-10">
                   Browse Recipes
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/test" className="px-10">
                   Blog
                 </Link>
-              </li>
+              </li> */}
               <li>
-                <a href="#" className="px-10">
+                <Link to="/contact" className="px-10">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
           <Routes>
             <Route exact path="/" element={<Home />} />
-            {/* <Route path="/recipes" element={<ShowRecipes />} /> */}
-            <Route path="/recipes/:id" element={<ShowRecipes />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="/recipes" element={<BrowseRecipe />} />
+            {/* <Route path="/recipes/:id" element={<ShowRecipes />} /> */}
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </Router>
       </div>

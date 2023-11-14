@@ -1,9 +1,7 @@
-// import React from "react";
 import { useState } from "react";
 import foodimg from "../assets/foodImg.jpg";
 import Layouts from "../layouts";
 import { Link } from "react-router-dom";
-// import "./index.css";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -59,11 +57,11 @@ const Home = () => {
                   id="input"
                   value={inputs}
                   onChange={(e) => setInput(e.target.value)}
-                  className="capitalize p-2 rounded-tl-md rounded-bl-md w-9/12 text-black"
+                  className="focus:outline-none capitalize p-2 rounded-tl-md rounded-bl-md w-9/12 text-black"
                 />
                 <button
                   type="submit"
-                  className="bg-black px-2 py-2 rounded-tr-md rounded-br-md border-none focus:outline-none hover:red"
+                  className="bg-black px-2 py-2 rounded-tr-md rounded-br-md border-none focus:outline-none hover:bg-[#7f7c7c]"
                 >
                   Search
                 </button>
@@ -72,12 +70,16 @@ const Home = () => {
           </div>
           {/* <img src={foodimg} className="" /> */}
           <h3 className="text-3xl text-center m-3 font-semibold capitalize ">
-            {inputs} Recipes
+            Latest Recipes
           </h3>
           <div className="m-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
             {recipes.map((recipe, index) => {
               return (
-                <Link to={`/recipes/${recipe.id}`}>
+                <Link
+                  to={`/recipes/${recipe.id}`}
+                  key={index}
+                  data-aos="fade-down"
+                >
                   <div
                     key={index}
                     className="rounded-md shadow-md  border border-[#ebebeb]"
