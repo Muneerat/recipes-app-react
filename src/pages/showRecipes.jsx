@@ -6,37 +6,39 @@ import { RiMentalHealthFill } from "react-icons/ri";
 import { GiKnifeFork } from "react-icons/gi";
 import { WiMoonAltFull } from "react-icons/wi";
 import foodimg from "../assets/foodImg.jpg";
+import Home from "./home";
 
 const ShowRecipes = () => {
   const { recipeId } = useParams();
   const [recipeDetails, setRecipeDetails] = useState(null);
+  const [similar, setSimilar] = useState([]);
 
-  useEffect(() => {
-    const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=0cdbe3234d304a6da93fbc36ffecba26?includeNutrition=false`;
-    const url2 = `https://api.spoonacular.com/recipes/716342/information?apiKey=0cdbe3234d304a6da93fbc36ffecba26`;
+  //Recipe Information
+  const recipeInfo = () => {
+    const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=0cdbe3234d304a6da93fbc36ffecba26&includeNutrition=false`;
 
-    fetch(url2, {
+    fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setRecipeDetails(data);
       })
       .catch((error) => {
         console.error("Error fetching recipe details", error);
       });
+  };
+  useEffect(() => {
+    recipeInfo();
   }, [recipeId]);
 
-  const [similar, setSimilar] = useState([]);
-
   //similar Recipes
-  useEffect(() => {
-    const url =
-      "https://api.spoonacular.com/recipes/716342/similar?apiKey=0cdbe3234d304a6da93fbc36ffecba26";
+  const similarRecipes = () => {
+    const url = `https://api.spoonacular.com/recipes/${recipeId}/similar?apiKey=0cdbe3234d304a6da93fbc36ffecba26`;
     fetch(url, {
       method: "GET",
       headers: {
@@ -46,9 +48,11 @@ const ShowRecipes = () => {
       .then((res) => res.json())
       .then((data) => {
         setSimilar(data);
-        // console.log(data);
       });
-  });
+  };
+  useEffect(() => {
+    similarRecipes();
+  }, []);
 
   return (
     <Layouts>
@@ -135,14 +139,16 @@ const ShowRecipes = () => {
                                   <WiMoonAltFull className="mt-" size={30} />
                                   {mainstep.step}
                                 </li>
-                                {/* {mainstep.ingredients.map((ingredientNamme, index) => {
+                              </ul>
+                              {/* {mainstep.ingredients.map((ingredientNamme, index) => {
                             return (
                               <div className="">
-                                <li key={index}>{ingredientNamme.name}</li>
+                              <ul>
+                               <li key={index}>{ingredientNamme.name}</li></ul>
+                               
                               </div>
                             );
                           })} */}
-                              </ul>
                             </div>
                           );
                         })}
@@ -161,7 +167,6 @@ const ShowRecipes = () => {
                 );
               })} */}
               </p>
-              {/* Add more details as needed */}
             </div>
           ) : (
             <p>Loading recipe details...</p>
@@ -175,7 +180,7 @@ const ShowRecipes = () => {
           <h1>Related Recipes</h1>
           {similar.map((similarRecipes, index) => {
             return (
-              <Link key={index} href="/recipe/${similarRecipes.id}" passHref>
+              <Link key={index} href="/recipe/${similarRecipes.id}">
                 <p>{similarRecipes.title}</p>
                 <img src={similarRecipes.imageType} alt="" />
                 <hr />

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import foodimg from "../assets/foodImg.jpg";
+// import foodimg from "../assets/foodImg.jpg";
+import Foodimg from "../assets/foodImg.jpg";
 import Layouts from "../layouts";
 import { Link } from "react-router-dom";
 
@@ -22,7 +23,7 @@ const Home = () => {
         .then((res) => res.json())
         .then((data) => {
           setRecipes(data.results);
-          console.log(data);
+          // console.log(data);
         })
         .catch((error) => {
           console.log("Error", error);
@@ -38,7 +39,7 @@ const Home = () => {
           <div
             className="w-full h-screen flex items-center justify-center bg-cover bg-center text-center "
             style={{
-              backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${foodimg})`,
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${Foodimg})`,
               height: "60vh",
             }}
           >
@@ -68,7 +69,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          {/* <img src={foodimg} className="" /> */}
+          {/* <img src={ab} className="" /> */}
           <h3 className="text-3xl text-center m-3 font-semibold capitalize ">
             Latest Recipes
           </h3>

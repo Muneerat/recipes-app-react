@@ -52,8 +52,9 @@ const App = () => {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/recipes" element={<BrowseRecipe />} />
-            {/* <Route path="/recipes/:id" element={<ShowRecipes />} /> */}
+            <Route path="/recipes/:recipeId" element={<ShowRecipes />} />
             <Route path="/contact" element={<Contact />} />
+            {/* <Route path="*" element={<NoPage />} /> */}
           </Routes>
         </Router>
       </div>
