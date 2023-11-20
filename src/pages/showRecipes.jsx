@@ -6,7 +6,6 @@ import { RiMentalHealthFill } from "react-icons/ri";
 import { GiKnifeFork } from "react-icons/gi";
 import { WiMoonAltFull } from "react-icons/wi";
 import foodimg from "../assets/foodImg.jpg";
-import Home from "./home";
 
 const ShowRecipes = () => {
   const { recipeId } = useParams();
@@ -67,11 +66,11 @@ const ShowRecipes = () => {
           <h2>Browse Recipes </h2>
         </div>
       </div>
-      <div className="m-8 flex">
-        <div className="">
+      <div className="m-8 sm:flex">
+        <div className="sm:w-4/6 w-full">
           {recipeDetails ? (
             <div>
-              <div className="bg-[#f4f3f0] rounded-md w-4/6 p-4 sm:flex justify-between ">
+              <div className="bg-[#f4f3f0] rounded-md sm:w-4/6 p-4 sm:flex justify-between ">
                 <div className="flex">
                   <GiKnifeFork className="text-[#72716e] m-2" size={30} />
                   <div className="pb-6 text-sm ">
@@ -117,11 +116,11 @@ const ShowRecipes = () => {
               <img
                 src={recipeDetails.image}
                 alt=""
-                className="w-4/6 rounded-md"
+                className="sm:w-4/6 rounded-md"
               />
               {/* <p>{recipeDetails.instructions}</p> */}
 
-              <div className="w-4/6">
+              <div className="sm:w-4/6 m-5">
                 {recipeDetails.analyzedInstructions.map(
                   (ingredientStep, index) => {
                     return (
@@ -129,17 +128,17 @@ const ShowRecipes = () => {
                         {/* <p key={index}>{ingredient.name}</p> */}
                         {/* <p key={index}>{ingredient.cookingMinutes}</p> */}
                         <hr />
-                        <h3 className="font-bold my-3 text-3xl">Dirctions</h3>
+                        <h3 className="font-bold my-3 text-3xl">Directions</h3>
                         <div className="border border-b-2 border-[#372a2a]"></div>
                         {ingredientStep.steps.map((mainstep, index) => {
                           return (
                             <div className="">
-                              <ul>
-                                <li key={index} className="flex my-1">
-                                  <WiMoonAltFull className="mt-" size={30} />
+                              <ol className=" list-disc">
+                                <li key={index} className=" my-1">
                                   {mainstep.step}
                                 </li>
-                              </ul>
+                              </ol>
+
                               {/* {mainstep.ingredients.map((ingredientNamme, index) => {
                             return (
                               <div className="">
@@ -176,13 +175,19 @@ const ShowRecipes = () => {
             // </button>
           )}
         </div>
-        <div className="bg-[#f4f3f0] rounded-md">
-          <h1>Related Recipes</h1>
-          {similar.map((similarRecipes, index) => {
+        <div className="bg-[#f4f3f0] rounded-md h-fit p-4 sm:w-2/6 w-full">
+          <h1 class="font-bold text-2xl py-1 px-3 text">Related Recipes</h1>
+          <div className="border border-orange-500 w-2/4 mb-3"></div>
+          {similar.map((recipe, index) => {
             return (
-              <Link key={index} href="/recipe/${similarRecipes.id}">
-                <p>{similarRecipes.title}</p>
-                <img src={similarRecipes.imageType} alt="" />
+              <Link
+                key={index}
+                to={`/recipes/${recipe.id}`}
+                className="flex mx-4 my-6"
+              >
+                <img src={foodimg} alt="" className="w-1/6 rounded-md " />
+                <p className="font-semibold px-2 text-sm">{recipe.title}</p>
+
                 <hr />
               </Link>
             );

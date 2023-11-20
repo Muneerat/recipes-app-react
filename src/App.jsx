@@ -3,15 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/home";
 import ShowRecipes from "./pages/showRecipes";
 import "./App.css";
-import Test from "./pages/test";
 import BrowseRecipe from "./pages/browseRecipe";
 import Contact from "./pages/contact";
+// import { GiHamburgerMenu } from "react-icons/gi";
 
 // https://api.spoonacular.com/recipes/716429/information?apiKey=YOUR-API-KEY&includeNutrition=true.
 const App = () => {
-  // useEffect(() => {
-  //   submit();
-  // }, []);
+  // const [isMobile, seyIsMobile]
 
   return (
     <>
@@ -25,6 +23,9 @@ const App = () => {
                 <p>COOKING RECIPE</p>
               </div>
             </div>
+            {/* <button className="">
+              <GiHamburgerMenu />
+            </button> */}
             <ul className="justify-center flex m-8 ">
               <li>
                 <Link to="/" title="Home" className="px-10 text-red-600">

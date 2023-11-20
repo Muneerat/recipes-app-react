@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import foodimg from "../assets/foodImg.jpg";
+
 import Foodimg from "../assets/foodImg.jpg";
 import Layouts from "../layouts";
 import { Link } from "react-router-dom";
