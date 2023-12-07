@@ -1,6 +1,6 @@
 const Form = () => {
   return (
-    <div className="flex justify-center m-auto text-center mt-5">
+    <div className="flex justify-center m-auto text-center my-10">
       <div className="w-4/6">
         <p className="text-orange-500 py-3">Get in Touch Now</p>
         <h2 className="font-bold text-6xl">Write a Message</h2>
@@ -31,13 +31,13 @@ const Form = () => {
             <textarea
               name=""
               id=""
-              cols="100"
+              cols="98"
               rows="8"
               placeholder="Your Message"
-              className="bg-[#f4f3f0]  focus:outline-none p-3 rounded-md  m-1"
+              className="bg-[#f4f3f0]  focus:outline-none p-3 rounded-md  m-1 resize-none"
             ></textarea>
           </div>
-          <button>Send Message</button>
+          <button className="bg-orange-500 p-4 text-white rounded-md m-8">Send Message</button>
         </form>
       </div>
     </div>

@@ -63,7 +63,7 @@ const ShowRecipes = () => {
         }}
       >
         <div className="text-white font-semibold text-2xl sm:text-5xl font-mono my-auto mx-4 text-left">
-          <h2>Browse Recipes </h2>
+          {/* <h2> {recipeDetails.title} </h2> */}
         </div>
       </div>
       <div className="m-8 sm:flex">
@@ -72,6 +72,7 @@ const ShowRecipes = () => {
             <div>
               <div className="bg-[#f4f3f0] rounded-md sm:w-4/6 p-4 sm:flex justify-between ">
                 <div className="flex">
+                 
                   <GiKnifeFork className="text-[#72716e] m-2" size={30} />
                   <div className="pb-6 text-sm ">
                     <p>
@@ -115,7 +116,7 @@ const ShowRecipes = () => {
               </h2>
               <img
                 src={recipeDetails.image}
-                alt=""
+                alt={recipeDetails.title}
                 className="sm:w-4/6 rounded-md"
               />
               {/* <p>{recipeDetails.instructions}</p> */}
@@ -125,29 +126,33 @@ const ShowRecipes = () => {
                   (ingredientStep, index) => {
                     return (
                       <div key={index} className="">
-                        {/* <p key={index}>{ingredient.name}</p> */}
-                        {/* <p key={index}>{ingredient.cookingMinutes}</p> */}
-                        <hr />
                         <h3 className="font-bold my-3 text-3xl">Directions</h3>
                         <div className="border border-b-2 border-[#372a2a]"></div>
                         {ingredientStep.steps.map((mainstep, index) => {
                           return (
-                            <div className="">
+                            <div className="" key={index}>
                               <ol className=" list-disc">
                                 <li key={index} className=" my-1">
                                   {mainstep.step}
                                 </li>
                               </ol>
 
-                              {/* {mainstep.ingredients.map((ingredientNamme, index) => {
-                            return (
-                              <div className="">
-                              <ul>
-                               <li key={index}>{ingredientNamme.name}</li></ul>
-                               
-                              </div>
-                            );
-                          })} */}
+                              {mainstep.ingredients.map(
+                                (ingredientName, index) => {
+                                  return (
+                                    <div className="" key={index}>
+                                      {/* <h3 className="font-bold my-3 text-3xl">
+                                        ingredient
+                                      </h3>
+                                      <ul>
+                                        <li key={index}>
+                                          {ingredientName.name}
+                                        </li>
+                                      </ul> */}
+                                    </div>
+                                  );
+                                }
+                              )}
                             </div>
                           );
                         })}
@@ -156,27 +161,15 @@ const ShowRecipes = () => {
                   }
                 )}
               </div>
-              <p>
-                {/* {recipeDetails.extendedIngredients.map((da, index) => {
-                return (
-                  <div className="">
-                    <h1 key={index}>{da.consistency}</h1>
-                    <h1 key={index}>{da.aisle}</h1>
-                  </div>
-                );
-              })} */}
-              </p>
+              <p></p>
             </div>
           ) : (
             <p>Loading recipe details...</p>
-            //             <button type="button" class="bg-indigo-500 ..." disabled>
-            //   <svg class="motion-reduce:hidden animate-spin ..." viewBox="0 0 24 24"><!-- ... --></svg>
-            //   Processing...
-            // </button>
+                  
           )}
         </div>
         <div className="bg-[#f4f3f0] rounded-md h-fit p-4 sm:w-2/6 w-full">
-          <h1 class="font-bold text-2xl py-1 px-3 text">Related Recipes</h1>
+          <h1 className="font-bold text-2xl py-1 px-3 text">Related Recipes</h1>
           <div className="border border-orange-500 w-2/4 mb-3"></div>
           {similar.map((recipe, index) => {
             return (
@@ -185,8 +178,9 @@ const ShowRecipes = () => {
                 to={`/recipes/${recipe.id}`}
                 className="flex mx-4 my-6"
               >
-                <img src={foodimg} alt="" className="w-1/6 rounded-md " />
-                <p className="font-semibold px-2 text-sm">{recipe.title}</p>
+                <ol className=" list-disc">
+                  <li>{recipe.title}</li>
+                </ol>
 
                 <hr />
               </Link>

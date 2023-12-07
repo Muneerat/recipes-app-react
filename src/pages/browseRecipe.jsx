@@ -10,7 +10,6 @@ const BrowseRecipe = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    // console.log("here");
 
     const browseRecipeFetch = (input) => {
       const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=0cdbe3234d304a6da93fbc36ffecba26&query=${input}`;

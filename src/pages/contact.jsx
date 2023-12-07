@@ -4,6 +4,7 @@ import foodimg from "../assets/foodImg.jpg";
 import Map from "../components/map";
 import ContactBox from "../components/contactBox";
 import Form from "../components/form";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
@@ -22,9 +23,14 @@ const Contact = () => {
       </div>
       <Map />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 m-8 ">
-        <ContactBox name="435 Wandering Ct. Sausalito" />
-        <ContactBox name="oladipomunirat@gmail.com" />
-        <ContactBox name="666 888 0000" />
+        <ContactBox boxname="435 Wandering Ct. Sausalito"  />
+        <Link to="mailto:oladipomunirat@gmail.com">
+        <ContactBox boxname="oladipomunirat@gmail.com" />
+        </Link>
+        <Link  to="tel:+2347069251084">
+        <ContactBox boxname="666 888 0000" />
+        </Link>
+        
       </div>
       <Form />
     </Layouts>

@@ -1,15 +1,26 @@
+import { useState } from "react";
 import reactLogo from "./assets/logo.jpg";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  NavLink,
+} from "react-router-dom";
 import Home from "./pages/home";
 import ShowRecipes from "./pages/showRecipes";
 import "./App.css";
 import BrowseRecipe from "./pages/browseRecipe";
 import Contact from "./pages/contact";
-// import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { FiX } from "react-icons/fi";
 
-// https://api.spoonacular.com/recipes/716429/information?apiKey=YOUR-API-KEY&includeNutrition=true.
 const App = () => {
-  // const [isMobile, seyIsMobile]
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleToggle = () => {
+    setIsMobile(!isMobile);
+  };
 
   return (
     <>
@@ -23,31 +34,57 @@ const App = () => {
                 <p>COOKING RECIPE</p>
               </div>
             </div>
-            {/* <button className="">
-              <GiHamburgerMenu />
-            </button> */}
-            <ul className="justify-center flex m-8 ">
-              <li>
-                <Link to="/" title="Home" className="px-10 text-red-600">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/recipes" className="px-10">
-                  Browse Recipes
-                </Link>
-              </li>
-              {/* <li>
+            <div className="sm:hidden flex justify-end  dark:bg-slate-800 m-5 right-0">
+              <button className="" onClick={handleToggle}>
+                {isMobile ? <FiX size={25} /> : <GiHamburgerMenu size={25} />}
+              </button>
+            </div>
+            <div
+              className={`sm:flex ${
+                isMobile ? "fixed right-0 bg-white" : "hidden"
+              }`}
+            >
+              <ul className="justify-center sm:flex m-7 ">
+                <li>
+                  <NavLink
+                    to="/"
+                    title="Home"
+                    style={({ isActive }) => {
+                      return { color: isActive ? "orange" : "black" };
+                    }}
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/recipes"
+                    className="px-10"
+                    style={({ isActive }) => {
+                      return { color: isActive ? "orange" : "black" };
+                    }}
+                  >
+                    Browse Recipes
+                  </NavLink>
+                </li>
+                {/* <li>
                 <Link to="/test" className="px-10">
                   Blog
                 </Link>
               </li> */}
-              <li>
-                <Link to="/contact" className="px-10">
-                  Contact
-                </Link>
-              </li>
-            </ul>
+                <li>
+                  <NavLink
+                    to="/contact"
+                    className="px-10"
+                    style={({ isActive }) => {
+                      return { color: isActive ? "orange" : "black" };
+                    }}
+                  >
+                    Contact
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <Routes>
